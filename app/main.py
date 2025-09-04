@@ -60,10 +60,14 @@ def main():
        print(os.getcwd())
       #  continue
     elif cm =="cd":
-       try:
-         os.chdir(args[0])
-       except FileNotFoundError:
-          print (f"cd: {args[0]}: No such file or directory")
+      if args[0] == "~":
+         home=os.getenv("HOME")  
+         os.chdir(home)
+      else:
+         try:
+            os.chdir(args[0])
+         except FileNotFoundError:
+            print (f"cd: {args[0]}: No such file or directory")
     #  for name,path in executables:
     #     if name ==cm:
     #        found = path
