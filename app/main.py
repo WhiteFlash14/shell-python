@@ -40,7 +40,6 @@ def main():
     elif command.startswith("echo"):
       #  print(command[5:])
       sys.stdout.write(' '.join(args)+"\n")
-      echo_executed=True
       #  continue
     elif command.startswith("type"):
        cmd = args[0]
@@ -60,12 +59,16 @@ def main():
     elif cm =="pwd":
        print(os.getcwd())
       #  continue
-    
+    elif cm =="cd":
+       try:
+         os.chdir(args[0])
+       except FileNotFoundError:
+          print (f"cd: {args[0]}: No such file or directory")
     #  for name,path in executables:
     #     if name ==cm:
     #        found = path
     #        break
-    #  if found and not echo_executed:
+    #  if found and not echo_executed:r
     #     try:
    #        result = subprocess.run(parts,capture_output=True,text=True) 
    #        print(result.stdout.rstrip())  
